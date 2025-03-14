@@ -472,6 +472,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
             }
         });
     }
+    //Esta es una prueba
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
