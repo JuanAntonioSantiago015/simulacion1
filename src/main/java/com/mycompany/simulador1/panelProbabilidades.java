@@ -531,7 +531,6 @@ public class panelProbabilidades extends javax.swing.JFrame {
 
                 txtDE.setText(String.valueOf(desviacionEstandar(textPoblacion, textN, x, (int) textK)));
             }
-
             JFreeChart chart = ChartFactory.createBarChart("Distribución hipergeométrica", "Valor de n", "Valor hipergeométrico", dataset);
             ChartPanel chartPanel = new ChartPanel(chart);
             JFrame frame = new JFrame("Gráfica Hipergeométrica");
@@ -539,11 +538,10 @@ public class panelProbabilidades extends javax.swing.JFrame {
             frame.setContentPane(chartPanel);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-
         }
 
         if (textN < condicionTwnty) {
-
+            
         }
     }//GEN-LAST:event_btnCalcularActionPerformed
 
