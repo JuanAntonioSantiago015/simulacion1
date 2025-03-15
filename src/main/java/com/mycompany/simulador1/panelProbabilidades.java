@@ -17,6 +17,8 @@ import static com.mycompany.simulador1.metodos.agregarFila;
 import static com.mycompany.simulador1.metodos.calcularBinomial;
 //import static com.mycompany.simulador1.probabilidades.dat;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -84,6 +86,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
         modeloTabla = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         txtNumExitos = new javax.swing.JTextField();
+        tipoCalculo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -207,6 +210,8 @@ public class panelProbabilidades extends javax.swing.JFrame {
             }
         });
 
+        tipoCalculo.setText("HOLA");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -292,11 +297,16 @@ public class panelProbabilidades extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(493, 493, 493)))
                 .addContainerGap(217, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(573, 573, 573)
+                .addComponent(tipoCalculo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addComponent(tipoCalculo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtExito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +335,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -337,7 +347,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtSesgo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,7 +359,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
                     .addComponent(txtTipoC))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         txtPoblacion.getAccessibleContext().setAccessibleName("");
@@ -462,6 +472,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
 
         //---------------------------------------------------------------------- LÓGICA DE CONDICIONALES
         if (textN >= condicionTwnty && textPoblacion != 0) {
+            tipoCalculo.setText("Hipergeomética");
             ((DefaultTableModel) modeloTabla.getModel()).setRowCount(0);
             if (txtK.getText().trim().isEmpty()) {
                 textK = valorP * textPoblacion; // Calculamos k
@@ -501,6 +512,8 @@ public class panelProbabilidades extends javax.swing.JFrame {
                     hiperAcum = hiperAcum.add(vHiper);
                     dataset.addValue(vHiper, "Probabilidad", String.valueOf(i));
                     agregarFilaH(i, vHiper, hiperAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+                    dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+                    modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentaje));
                 }
             }
 
@@ -517,7 +530,8 @@ public class panelProbabilidades extends javax.swing.JFrame {
                     hiperAcum = hiperAcum.add(vHiper);
                     dataset.addValue(vHiper, "Probabilidad", String.valueOf(i));
                     agregarFilaH(i, vHiper, hiperAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
-
+                    dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+                    modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentaje));
                 }
             }
 
@@ -536,6 +550,8 @@ public class panelProbabilidades extends javax.swing.JFrame {
                     hiperAcum = hiperAcum.add(vHiper);
                     dataset.addValue(vHiper, "Probabilidad", String.valueOf(i));
                     agregarFilaH(i, vHiper, hiperAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+                    dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+                    modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentaje));
                 }
 
                 txtDE.setText(String.valueOf(desviacionEstandar(textPoblacion, textN, (int) textK)));
@@ -547,9 +563,19 @@ public class panelProbabilidades extends javax.swing.JFrame {
             frame.setContentPane(chartPanel);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
+
+            // Segundo gráfico
+            JFreeChart porcentajes = ChartFactory.createBarChart("Porcentajes", "Valor de n", "Valor de porcentajes", dat);
+            ChartPanel chartPanel2 = new ChartPanel(porcentajes);
+            JFrame frame2 = new JFrame("Gráfica de Porcentajes");
+            frame2.setSize(800, 600);
+            frame2.setContentPane(chartPanel2);
+            frame2.setLocation(frame.getX() + 820, frame.getY()); // Ubicar al lado de la primera ventana
+            frame2.setVisible(true);
         }
 
         if (textN < condicionTwnty || condicionTwnty == 0) {
+            tipoCalculo.setText("Binomial");
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             ((DefaultTableModel) modeloTabla.getModel()).setRowCount(0);
             txtFactor.setText("");
@@ -570,14 +596,13 @@ public class panelProbabilidades extends javax.swing.JFrame {
                 //Para población infinita
                 System.out.println("textPoblacion = " + textPoblacion);
                 System.out.println("fivePrcnt = " + fivePrcnt);
-                
+
                 if (fivePrcnt == 0.0 || textPoblacion == 0) {
                     double calc = Math.sqrt(textN * valorP * valorQ);
                     System.out.println("Es menor a 5%");
                     txtDE.setText(String.valueOf(calc));
                     txtFactor.setText("");
                 }
-                
 
                 //Para población finita
                 if (textPoblacion != 0 && textN >= fivePrcnt) {
@@ -696,6 +721,34 @@ public class panelProbabilidades extends javax.swing.JFrame {
                 frame2.setVisible(true);
             }
         }
+
+        if (textMedia != 0) {
+            tipoCalculo.setText("Poisson");
+            txtTipoS.setText("");
+            txtTipoC.setText("");
+            txtCurtosis.setText("");
+            txtSesgo.setText("");
+            txtFactor.setText("");
+            txtMedia.setText("");
+            txtDE.setText("");
+
+            txtResultado.setText(String.valueOf(calcularPoisson(x, textMedia)));
+            double sesgoPoisson = 1 / Math.sqrt(textMedia);
+            txtSesgo.setText(String.valueOf(sesgoPoisson));
+            txtTipoS.setText(determinarTipoSesgo(sesgoPoisson));
+
+            double curtosisPoisson = 1 / textMedia;
+            txtCurtosis.setText(String.valueOf(curtosisPoisson));
+            txtTipoC.setText(determinarTipoCurtosis(curtosisPoisson));
+
+            BigDecimal valorMediaBD = new BigDecimal(textMedia);
+            MathContext mc = new MathContext(50, RoundingMode.HALF_UP);
+            BigDecimal dePoisson = sqrt(valorMediaBD, mc);
+            txtDE.setText(String.valueOf(dePoisson));
+
+            txtMedia.setText(String.valueOf(textMedia));
+        }
+
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtNumExitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumExitosActionPerformed
@@ -758,6 +811,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable modeloTabla;
+    private javax.swing.JLabel tipoCalculo;
     private javax.swing.JTextField txtCurtosis;
     private javax.swing.JTextField txtDE;
     private javax.swing.JTextField txtExito;
