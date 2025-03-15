@@ -12,8 +12,13 @@ import static com.mycompany.simulador1.metodos.curtosis;
 import static com.mycompany.simulador1.metodos.desviacionEstandar;
 import static com.mycompany.simulador1.metodos.determinarTipoCurtosis;
 import static com.mycompany.simulador1.metodos.determinarTipoSesgo;
+import static com.mycompany.simulador1.metodos.factorCorreccion;
+import static com.mycompany.simulador1.metodos.agregarFila;
+import static com.mycompany.simulador1.metodos.calcularBinomial;
+//import static com.mycompany.simulador1.probabilidades.dat;
 import java.math.BigDecimal;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -32,6 +37,8 @@ public class panelProbabilidades extends javax.swing.JFrame {
     public panelProbabilidades() {
         initComponents();
     }
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    static DefaultCategoryDataset dat = new DefaultCategoryDataset();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -451,7 +458,9 @@ public class panelProbabilidades extends javax.swing.JFrame {
         String seleccionado = (String) comboOpciones.getSelectedItem();
 
         double condicionTwnty = calcularVeintePrcnt(textPoblacion);
+        double fivePrcnt = calcularFivePrcnt(textPoblacion);
 
+        //---------------------------------------------------------------------- LÓGICA DE CONDICIONALES
         if (textN >= condicionTwnty && textPoblacion != 0) {
             ((DefaultTableModel) modeloTabla.getModel()).setRowCount(0);
             if (txtK.getText().trim().isEmpty()) {
@@ -476,7 +485,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
             double media = (textN * textK) / textPoblacion;
             txtMedia.setText(String.valueOf(media));
 
-            txtDE.setText(String.valueOf(desviacionEstandar(textPoblacion, textN, x, (int) textK)));
+            txtDE.setText(String.valueOf(desviacionEstandar(textPoblacion, textN, (int) textK)));
 
             if (seleccionado.equals("x=")) {
                 BigDecimal vHiperParaMostrar = calcularHiper(textPoblacion, textN, x, (int) textK);
@@ -529,7 +538,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
                     agregarFilaH(i, vHiper, hiperAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
                 }
 
-                txtDE.setText(String.valueOf(desviacionEstandar(textPoblacion, textN, x, (int) textK)));
+                txtDE.setText(String.valueOf(desviacionEstandar(textPoblacion, textN, (int) textK)));
             }
             JFreeChart chart = ChartFactory.createBarChart("Distribución hipergeométrica", "Valor de n", "Valor hipergeométrico", dataset);
             ChartPanel chartPanel = new ChartPanel(chart);
@@ -540,8 +549,152 @@ public class panelProbabilidades extends javax.swing.JFrame {
             frame.setVisible(true);
         }
 
-        if (textN < condicionTwnty) {
-            
+        if (textN < condicionTwnty || condicionTwnty == 0) {
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            ((DefaultTableModel) modeloTabla.getModel()).setRowCount(0);
+            txtFactor.setText("");
+            txtDE.setText("");
+            txtMedia.setText("");
+            BigDecimal vFinal = BigDecimal.ZERO;
+            BigDecimal porcentajeAcum = BigDecimal.ZERO;
+            BigDecimal probAcum = BigDecimal.ZERO;
+            double porcentajeAceptacion = Integer.parseInt(txtPorcentajeAceptacion.getText());
+
+            if (x > textN) {
+                JOptionPane.showMessageDialog(null, "El valor de x debe ser menor a muestra");
+            } else {
+
+                double media = textN * valorP;
+                txtMedia.setText(String.valueOf(media));
+
+                //Para población infinita
+                System.out.println("textPoblacion = " + textPoblacion);
+                System.out.println("fivePrcnt = " + fivePrcnt);
+                
+                if (fivePrcnt == 0.0 || textPoblacion == 0) {
+                    double calc = Math.sqrt(textN * valorP * valorQ);
+                    System.out.println("Es menor a 5%");
+                    txtDE.setText(String.valueOf(calc));
+                    txtFactor.setText("");
+                }
+                
+
+                //Para población finita
+                if (textPoblacion != 0 && textN >= fivePrcnt) {
+                    double FC = factorCorreccion(textPoblacion, textN);
+                    txtFactor.setText(String.valueOf(FC));
+                    double calc = FC * Math.sqrt(textN * valorP * valorQ);
+                    System.out.println("Es mayor a 5%");
+                    txtDE.setText(String.valueOf(calc));
+                }
+
+                if (seleccionado.equals("x=")) {
+                    for (int i = 0; i <= x; i++) {
+                        // Obtener el valor binomial como BigDecimal
+                        BigDecimal vBinomial = calcularBinomial(valorP, valorQ, textN, i);
+
+                        // Acumular valores usando BigDecimal
+                        vFinal = vFinal.add(vBinomial);
+
+                        // Agregar al dataset
+                        dataset.addValue(vBinomial.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                        // Calcular el porcentaje
+                        BigDecimal porcentaje1 = vBinomial.multiply(BigDecimal.valueOf(100));
+                        porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                        probAcum = probAcum.add(vBinomial);
+
+                        // Llamar a la función para agregar fila con valores en BigDecimal
+                        agregarFila(i, vBinomial, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+
+                        // Agregar al gráfico de porcentajes
+                        dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                        // Configurar el resaltador de filas
+                        modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                    }
+
+                    BigDecimal vFinal1 = calcularBinomial(valorP, valorQ, textN, x);
+                    txtResultado.setText(vFinal1.toPlainString());
+
+                    BigDecimal vFinalX = calcularBinomial(valorP, valorQ, textN, x);
+                    BigDecimal porcentajeFinal = vFinalX.multiply(BigDecimal.valueOf(100));
+
+                }
+
+                if (seleccionado.equals("x<=")) {
+                    vFinal = BigDecimal.ZERO; // Reiniciar la variable antes de empezar a sumar
+                    porcentajeAcum = BigDecimal.ZERO;
+                    probAcum = BigDecimal.ZERO;
+
+                    for (int i = 0; i <= x; i++) {  // Iterar hasta 'x' en lugar de 'n'
+                        BigDecimal vBinomial = calcularBinomial(valorP, valorQ, textN, i);
+                        vFinal = vFinal.add(vBinomial);
+
+                        dataset.addValue(vBinomial.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                        BigDecimal porcentaje1 = vBinomial.multiply(BigDecimal.valueOf(100));
+                        porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                        probAcum = probAcum.add(vBinomial);
+
+                        agregarFila(i, vBinomial, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+                        dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                        modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                    }
+
+                    txtResultado.setText(vFinal.toPlainString());
+                }
+
+                if (seleccionado.equals("x>=")) {
+                    vFinal = BigDecimal.ZERO; // Reiniciar la variable antes de empezar a sumar
+
+                    for (int i = x; i <= textN; i++) {  // Aquí se debe iterar desde 'x' hasta 'n'
+                        BigDecimal vBinomial = calcularBinomial(valorP, valorQ, textN, i);  // Suponiendo que esta función devuelve BigDecimal
+                        vFinal = vFinal.add(vBinomial);
+
+                        dataset.addValue(vBinomial.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                        BigDecimal porcentaje1 = vBinomial.multiply(BigDecimal.valueOf(100));
+                        porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                        probAcum = probAcum.add(vBinomial);
+
+                        agregarFila(i, vBinomial, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+                        dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                        modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                    }
+
+                    txtResultado.setText(vFinal.toPlainString());
+
+                }
+
+                txtSesgo.setText(String.valueOf(calcularSesgo(valorQ, valorP, textN)));
+                double ses = calcularSesgo(valorQ, valorP, textN);
+                txtTipoS.setText(determinarTipoSesgo(ses));
+
+                txtCurtosis.setText(String.valueOf(curtosis(valorQ, valorP, textN)));
+                double curt = curtosis(valorQ, valorP, textN);
+                txtTipoC.setText(determinarTipoCurtosis(curt));
+
+                //Gráfico
+                JFreeChart chart = ChartFactory.createBarChart("Distribución binomial", "Valor de n", "Valor binomial", dataset);
+                ChartPanel chartPanel = new ChartPanel(chart);
+                JFrame frame = new JFrame("Gráfica Binomial");
+                frame.setSize(800, 600);
+                frame.setContentPane(chartPanel);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
+                // Segundo gráfico
+                JFreeChart porcentajes = ChartFactory.createBarChart("Porcentajes", "Valor de n", "Valor de porcentajes", dat);
+                ChartPanel chartPanel2 = new ChartPanel(porcentajes);
+                JFrame frame2 = new JFrame("Gráfica de Porcentajes");
+                frame2.setSize(800, 600);
+                frame2.setContentPane(chartPanel2);
+                frame2.setLocation(frame.getX() + 820, frame.getY()); // Ubicar al lado de la primera ventana
+                frame2.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnCalcularActionPerformed
 

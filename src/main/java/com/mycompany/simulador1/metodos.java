@@ -15,22 +15,41 @@ import javax.swing.table.DefaultTableModel;
  * @author juan
  */
 public class metodos {
-    public static BigDecimal desviacionEstandar(int N, int n, int x, int k) {
 
+    public static BigDecimal desviacionEstandar(int N, int n, int k) {
         MathContext mc = new MathContext(50, RoundingMode.HALF_UP);
+
+        // Convertir los valores a BigDecimal
         BigDecimal NDec = new BigDecimal(N);
         BigDecimal nDec = new BigDecimal(n);
-        BigDecimal xDec = new BigDecimal(x);
         BigDecimal kDec = new BigDecimal(k);
-        BigDecimal division = kDec.divide(NDec, mc);
-        BigDecimal mult1 = nDec.multiply(division, mc);
-        BigDecimal raiz = sqrt(mult1, mc);
 
-        BigDecimal resta = BigDecimal.ONE.subtract(division, mc);
+        // Calcular (n * k) / N
+        BigDecimal nk = nDec.multiply(kDec, mc);
+        BigDecimal division1 = nk.divide(NDec, mc);
 
-        BigDecimal resultado = raiz.multiply(resta, mc);
+        // Calcular 1 - (k / N)
+        BigDecimal division2 = kDec.divide(NDec, mc);
+        BigDecimal resta = BigDecimal.ONE.subtract(division2, mc);
 
-        System.out.println("ESTA ES LA DESVIACIÖN " + resultado);
+        // Multiplicar (n * k / N) * (1 - k / N)
+        BigDecimal multInterna = division1.multiply(resta, mc);
+
+        // Calcular la primera raíz cuadrada: sqrt((n * k / N) * (1 - k / N))
+        BigDecimal raiz1 = sqrt(multInterna, mc);
+
+        // Calcular (N - n) / (N - 1)
+        BigDecimal restaNum = NDec.subtract(nDec, mc);
+        BigDecimal restaDen = NDec.subtract(BigDecimal.ONE, mc);
+        BigDecimal division3 = restaNum.divide(restaDen, mc);
+
+        // Calcular la segunda raíz cuadrada: sqrt((N - n) / (N - 1))
+        BigDecimal raiz2 = sqrt(division3, mc);
+
+        // Multiplicar las dos raíces
+        BigDecimal resultado = raiz1.multiply(raiz2, mc);
+
+        System.out.println("Desviación estándar: " + resultado);
 
         return resultado;
     }
@@ -48,6 +67,7 @@ public class metodos {
     public static void agregarFilaH(double n, BigDecimal vHiper, BigDecimal vBinomialAcum, BigDecimal porcentaje, BigDecimal porcentajeAcum, DefaultTableModel tabla) {
         tabla.addRow(new Object[]{n, vHiper, vBinomialAcum, porcentaje, porcentajeAcum});
     }
+
     public static String determinarTipoCurtosis(double curtosis) {
         String tipoC = "";
         if (curtosis == 0) {
@@ -152,6 +172,11 @@ public class metodos {
         return resultado;
     }
     
+    public static double calcularFivePrcnt(int N){
+        double validacion = N * 0.05;
+        return validacion;
+    }
+
     public static double calcularVeintePrcnt(int N) {
         double validacion = N * 0.20;
         return validacion;
@@ -218,5 +243,5 @@ public class metodos {
         BigDecimal resultado = mult1.divide(factorial, 20, RoundingMode.HALF_UP);
         return resultado;
     }
-    
+
 }
