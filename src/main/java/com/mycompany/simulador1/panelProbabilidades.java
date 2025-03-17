@@ -87,6 +87,9 @@ public class panelProbabilidades extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtNumExitos = new javax.swing.JTextField();
         tipoCalculo = new javax.swing.JLabel();
+        btnCalcularPoisson = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaPoisson = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,91 +215,126 @@ public class panelProbabilidades extends javax.swing.JFrame {
 
         tipoCalculo.setText("HOLA");
 
+        btnCalcularPoisson.setText("Calcular Poisson");
+        btnCalcularPoisson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularPoissonActionPerformed(evt);
+            }
+        });
+
+        tablaPoisson.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "n", "Valor Poisson", "Valor Poisson acumulado", "Porcentaje", "Porcentaje Acumulado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaPoisson);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtExito, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFracaso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPorcentajeAceptacion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel7)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNumExitos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(comboOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                                .addComponent(btnCalcular))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCurtosis, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtSesgo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtDE, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTipoS)
-                                    .addComponent(txtTipoC))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtK, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(493, 493, 493)))
-                .addContainerGap(217, Short.MAX_VALUE))
+                        .addGap(101, 101, 101)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtExito, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtFracaso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtPorcentajeAceptacion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(jLabel7)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(txtMed, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtNumExitos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(comboOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtCurtosis, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtSesgo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtDE, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtTipoS)
+                                            .addComponent(txtTipoC))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel15)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtK, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(64, 64, 64)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCalcularPoisson)
+                        .addGap(28, 28, 28))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(573, 573, 573)
                 .addComponent(tipoCalculo)
@@ -329,7 +367,8 @@ public class panelProbabilidades extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(txtNumExitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCalcular))
+                            .addComponent(btnCalcular)
+                            .addComponent(btnCalcularPoisson))
                         .addComponent(jLabel7)))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -358,7 +397,9 @@ public class panelProbabilidades extends javax.swing.JFrame {
                     .addComponent(txtCurtosis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipoC))
                 .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -574,7 +615,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
             frame2.setVisible(true);
         }
 
-        if (textN < condicionTwnty || condicionTwnty == 0) {
+        if (textN < condicionTwnty || condicionTwnty == 0 && textMedia == 0) {
             tipoCalculo.setText("Binomial");
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             ((DefaultTableModel) modeloTabla.getModel()).setRowCount(0);
@@ -722,7 +763,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
             }
         }
 
-        if (textMedia != 0) {
+        if (textMedia != 0 && x != 0) {
             tipoCalculo.setText("Poisson");
             txtTipoS.setText("");
             txtTipoC.setText("");
@@ -731,6 +772,12 @@ public class panelProbabilidades extends javax.swing.JFrame {
             txtFactor.setText("");
             txtMedia.setText("");
             txtDE.setText("");
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            ((DefaultTableModel) modeloTabla.getModel()).setRowCount(0);
+            BigDecimal vFinal = BigDecimal.ZERO;
+            BigDecimal porcentajeAcum = BigDecimal.ZERO;
+            BigDecimal probAcum = BigDecimal.ZERO;
+            double porcentajeAceptacion = Integer.parseInt(txtPorcentajeAceptacion.getText());
 
             txtResultado.setText(String.valueOf(calcularPoisson(x, textMedia)));
             double sesgoPoisson = 1 / Math.sqrt(textMedia);
@@ -747,6 +794,105 @@ public class panelProbabilidades extends javax.swing.JFrame {
             txtDE.setText(String.valueOf(dePoisson));
 
             txtMedia.setText(String.valueOf(textMedia));
+
+            if (seleccionado.equals("x=")) {
+                for (int i = 0; i <= x; i++) {
+                    // Obtener el valor binomial como BigDecimal
+                    BigDecimal vPoisson = calcularPoisson(i, textMedia);
+
+                    // Acumular valores usando BigDecimal
+                    vFinal = vFinal.add(vPoisson);
+
+                    // Agregar al dataset
+                    dataset.addValue(vPoisson.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                    // Calcular el porcentaje
+                    BigDecimal porcentaje1 = vPoisson.multiply(BigDecimal.valueOf(100));
+                    porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                    probAcum = probAcum.add(vPoisson);
+
+                    // Llamar a la función para agregar fila con valores en BigDecimal
+                    agregarFila(i, vPoisson, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+
+                    // Agregar al gráfico de porcentajes
+                    dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                    // Configurar el resaltador de filas
+                    modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                }
+
+                BigDecimal vFinal1 = calcularPoisson(x, textMedia);
+                txtResultado.setText(vFinal1.toPlainString());
+
+                BigDecimal vFinalX = calcularPoisson(x, textMedia);
+                BigDecimal porcentajeFinal = vFinalX.multiply(BigDecimal.valueOf(100));
+
+            }
+
+            if (seleccionado.equals("x<=")) {
+                vFinal = BigDecimal.ZERO; // Reiniciar la variable antes de empezar a sumar
+                porcentajeAcum = BigDecimal.ZERO;
+                probAcum = BigDecimal.ZERO;
+
+                for (int i = 0; i <= x; i++) {  // Iterar hasta 'x' en lugar de 'n'
+                    BigDecimal vPoisson = calcularPoisson(i, textMedia);
+                    vFinal = vFinal.add(vPoisson);
+
+                    dataset.addValue(vPoisson.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                    BigDecimal porcentaje1 = vPoisson.multiply(BigDecimal.valueOf(100));
+                    porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                    probAcum = probAcum.add(vPoisson);
+
+                    agregarFila(i, vPoisson, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+                    dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                    modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                }
+
+                txtResultado.setText(vFinal.toPlainString());
+            }
+
+            if (seleccionado.equals("x>=")) {
+                vFinal = BigDecimal.ZERO; // Reiniciar la variable antes de empezar a sumar
+
+                for (int i = x; i <= textN; i++) {  // Aquí se debe iterar desde 'x' hasta 'n'
+                    BigDecimal vPoisson = calcularPoisson(i, textMedia);  // Suponiendo que esta función devuelve BigDecimal
+                    vFinal = vFinal.add(vPoisson);
+
+                    dataset.addValue(vPoisson.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                    BigDecimal porcentaje1 = vPoisson.multiply(BigDecimal.valueOf(100));
+                    porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                    probAcum = probAcum.add(vPoisson);
+
+                    agregarFila(i, vPoisson, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) modeloTabla.getModel());
+                    dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                    modeloTabla.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                }
+
+                txtResultado.setText(vFinal.toPlainString());
+
+            }
+
+            //Gráfico
+            JFreeChart chart = ChartFactory.createBarChart("Distribución Poisson", "Valor de n", "Valor Poisson", dataset);
+            ChartPanel chartPanel = new ChartPanel(chart);
+            JFrame frame = new JFrame("Gráfica Poisson");
+            frame.setSize(800, 600);
+            frame.setContentPane(chartPanel);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+            // Segundo gráfico
+            JFreeChart porcentajes = ChartFactory.createBarChart("Porcentajes", "Valor de n", "Valor de porcentajes", dat);
+            ChartPanel chartPanel2 = new ChartPanel(porcentajes);
+            JFrame frame2 = new JFrame("Gráfica de Porcentajes");
+            frame2.setSize(800, 600);
+            frame2.setContentPane(chartPanel2);
+            frame2.setLocation(frame.getX() + 820, frame.getY()); // Ubicar al lado de la primera ventana
+            frame2.setVisible(true);
         }
 
     }//GEN-LAST:event_btnCalcularActionPerformed
@@ -754,6 +900,160 @@ public class panelProbabilidades extends javax.swing.JFrame {
     private void txtNumExitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumExitosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumExitosActionPerformed
+
+    private void btnCalcularPoissonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularPoissonActionPerformed
+        double valorP = 0;
+        double valorQ = 0;
+        int textN = 0;
+        int textPoblacion = 0;
+        double textK = 0;
+        double porcentaje = 0;
+        double textMedia = 0;
+        int x = 0;
+        try {
+            // Verificar si el campo está vacío
+            if (txtMuestra.getText().trim().isEmpty()) {
+            } else {
+                textN = Integer.parseInt(txtMuestra.getText().trim());
+            }
+
+            if (txtExito.getText().trim().isEmpty()) {
+            } else {
+                valorP = Double.parseDouble(txtExito.getText().trim());
+                valorQ = 1 - valorP;
+            }
+
+            if (txtFracaso.getText().trim().isEmpty()) {
+                valorQ = 1 - valorP;
+            } else {
+                valorQ = Double.parseDouble(txtFracaso.getText().trim());
+                valorP = 1 - valorQ;
+            }
+
+            if (txtPoblacion.getText().trim().isEmpty()) {
+            } else {
+                textPoblacion = Integer.parseInt(txtPoblacion.getText().trim());
+            }
+            if (txtPorcentajeAceptacion.getText().trim().isEmpty()) {
+            } else {
+                porcentaje = Double.parseDouble(txtPorcentajeAceptacion.getText().trim());
+            }
+            if (txtMed.getText().trim().isEmpty()) {
+                textMedia = 0.0;
+            } else {
+                textMedia = Double.parseDouble(txtMed.getText().trim());
+            }
+            if (txtNumExitos.getText().trim().isEmpty()) {
+            } else {
+                x = Integer.parseInt(txtNumExitos.getText().trim());
+            }
+
+            String seleccionado = (String) comboOpciones.getSelectedItem();
+
+            double factorPoisson = textN * valorP;
+            System.out.println("factorPoisson = " + factorPoisson);
+
+            ((DefaultTableModel) tablaPoisson.getModel()).setRowCount(0);
+            BigDecimal vFinal = BigDecimal.ZERO;
+            BigDecimal porcentajeAcum = BigDecimal.ZERO;
+            BigDecimal probAcum = BigDecimal.ZERO;
+            double porcentajeAceptacion = Integer.parseInt(txtPorcentajeAceptacion.getText());
+
+            
+            
+            if (valorP <= 0.1 && factorPoisson <= 10) {
+                txtMed.setText(String.valueOf(factorPoisson));
+
+                if (seleccionado.equals("x=")) {
+                    for (int i = 0; i <= x; i++) {
+                        // Obtener el valor binomial como BigDecimal
+                        BigDecimal vPoisson = calcularPoisson(i, textMedia);
+
+                        // Acumular valores usando BigDecimal
+                        vFinal = vFinal.add(vPoisson);
+
+                        // Agregar al dataset
+                        //dataset.addValue(vPoisson.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                        // Calcular el porcentaje
+                        BigDecimal porcentaje1 = vPoisson.multiply(BigDecimal.valueOf(100));
+                        porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                        probAcum = probAcum.add(vPoisson);
+
+                        // Llamar a la función para agregar fila con valores en BigDecimal
+                        agregarFila(i, vPoisson, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) tablaPoisson.getModel());
+
+                        // Agregar al gráfico de porcentajes
+                        //dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                        // Configurar el resaltador de filas
+                        tablaPoisson.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                    }
+
+                    BigDecimal vFinal1 = calcularPoisson(x, textMedia);
+                    ///txtResultado.setText(vFinal1.toPlainString());
+
+                    BigDecimal vFinalX = calcularPoisson(x, textMedia);
+                    BigDecimal porcentajeFinal = vFinalX.multiply(BigDecimal.valueOf(100));
+
+                }
+
+                if (seleccionado.equals("x<=")) {
+                    vFinal = BigDecimal.ZERO; // Reiniciar la variable antes de empezar a sumar
+                    porcentajeAcum = BigDecimal.ZERO;
+                    probAcum = BigDecimal.ZERO;
+
+                    for (int i = 0; i <= x; i++) {  // Iterar hasta 'x' en lugar de 'n'
+                        BigDecimal vPoisson = calcularPoisson(i, textMedia);
+                        vFinal = vFinal.add(vPoisson);
+
+                        //dataset.addValue(vPoisson.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                        BigDecimal porcentaje1 = vPoisson.multiply(BigDecimal.valueOf(100));
+                        porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                        probAcum = probAcum.add(vPoisson);
+
+                        agregarFila(i, vPoisson, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) tablaPoisson.getModel());
+                        //dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                        tablaPoisson.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                    }
+
+                    //txtResultado.setText(vFinal.toPlainString());
+                }
+
+                if (seleccionado.equals("x>=")) {
+                    vFinal = BigDecimal.ZERO; // Reiniciar la variable antes de empezar a sumar
+
+                    for (int i = x; i <= textN; i++) {  // Aquí se debe iterar desde 'x' hasta 'n'
+                        BigDecimal vPoisson = calcularPoisson(i, textMedia);  // Suponiendo que esta función devuelve BigDecimal
+                        vFinal = vFinal.add(vPoisson);
+
+                        //dataset.addValue(vPoisson.doubleValue(), "Probabilidad", String.valueOf(i));
+
+                        BigDecimal porcentaje1 = vPoisson.multiply(BigDecimal.valueOf(100));
+                        porcentajeAcum = porcentajeAcum.add(porcentaje1);
+                        probAcum = probAcum.add(vPoisson);
+
+                        agregarFila(i, vPoisson, probAcum, porcentaje1, porcentajeAcum, (DefaultTableModel) tablaPoisson.getModel());
+                        //dat.addValue(porcentajeAcum.doubleValue(), "Porcentajes", String.valueOf(i));
+
+                        tablaPoisson.setDefaultRenderer(Object.class, new ResaltadorFilas(porcentajeAceptacion));
+                    }
+
+                    //txtResultado.setText(vFinal.toPlainString());
+
+                }
+            }
+            
+            else {
+                JOptionPane.showMessageDialog(null, "Las condiciones no son las apropiadas para calcular la distribución de Poisson");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("EL VALOR DE N NO ES UN NÚMERO VÁLIDO");
+        }
+    }//GEN-LAST:event_btnCalcularPoissonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -793,6 +1093,7 @@ public class panelProbabilidades extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnCalcularPoisson;
     private javax.swing.JComboBox<String> comboOpciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -810,7 +1111,9 @@ public class panelProbabilidades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable modeloTabla;
+    private javax.swing.JTable tablaPoisson;
     private javax.swing.JLabel tipoCalculo;
     private javax.swing.JTextField txtCurtosis;
     private javax.swing.JTextField txtDE;
