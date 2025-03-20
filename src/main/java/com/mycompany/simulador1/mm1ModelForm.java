@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.simulador1;
+import static com.mycompany.simulador1.MetodosMM.*;
 
 /**
  *
@@ -26,21 +27,313 @@ public class mm1ModelForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtLlegadas = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        srvcTime = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        srvcUse = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtProb = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtUnidadesCola = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtUnidadesSistema = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtEsperaCola = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtEsperaSistema = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblTitle.setText("Modelo MM1");
+
+        jLabel1.setText("Llegadas");
+
+        txtLlegadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLlegadasActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Tiempo de servicio");
+
+        srvcTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                srvcTimeActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Uso del servidor");
+
+        srvcUse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                srvcUseActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Pn");
+
+        txtProb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProbActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Lq");
+
+        txtUnidadesCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnidadesColaActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Ls");
+
+        txtUnidadesSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnidadesSistemaActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Wq");
+
+        txtEsperaCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEsperaColaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Ws");
+
+        txtEsperaSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEsperaSistemaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(149, 182, 52));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Calcular");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(529, 529, 529)
+                        .addComponent(lblTitle))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEsperaCola, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtProb, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtLlegadas, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEsperaSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(srvcTime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtUnidadesCola, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(srvcUse, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtUnidadesSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1))))
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtLlegadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(srvcTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(srvcUse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtProb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtUnidadesCola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtUnidadesSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtEsperaCola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtEsperaSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(384, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtLlegadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLlegadasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLlegadasActionPerformed
+
+    private void srvcTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_srvcTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_srvcTimeActionPerformed
+
+    private void srvcUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_srvcUseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_srvcUseActionPerformed
+
+    private void txtProbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProbActionPerformed
+
+    private void txtUnidadesColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadesColaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnidadesColaActionPerformed
+
+    private void txtUnidadesSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadesSistemaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnidadesSistemaActionPerformed
+
+    private void txtEsperaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEsperaColaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEsperaColaActionPerformed
+
+    private void txtEsperaSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEsperaSistemaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEsperaSistemaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        double llegadas = 0;
+        double tiempoSrvc = 0;
+        double usoSrvd = 0;
+        double probabilidad = 0;
+        double unidadesCola = 0;
+        double unidadesSistema = 0;
+        double esperaCola = 0;
+        double esperaSistema = 0;
+        
+        try{
+            if(txtLlegadas.getText().trim().isEmpty()){
+                
+            }
+            else {
+                llegadas = Double.parseDouble(txtLlegadas.getText().trim());
+            }
+            if(srvcTime.getText().trim().isEmpty()){
+                
+            }
+            else {
+                tiempoSrvc = Double.parseDouble(srvcTime.getText().trim());
+            }
+            if(srvcUse.getText().trim().isEmpty()){
+                
+            }
+            else {
+                usoSrvd = Double.parseDouble(srvcUse.getText().trim());
+            }
+            if(txtProb.getText().trim().isEmpty()){
+                
+            }
+            else {
+                probabilidad = Double.parseDouble(txtProb.getText().trim());
+            }
+            if(txtUnidadesCola.getText().trim().isEmpty()){
+                
+            }
+            else {
+                unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
+            }
+            if(txtUnidadesSistema.getText().trim().isEmpty()){
+                
+            }
+            else {
+                unidadesSistema = Double.parseDouble(txtUnidadesSistema.getText().trim());
+            }
+            if(txtEsperaCola.getText().trim().isEmpty()){
+                
+            }
+            else {
+                esperaCola = Double.parseDouble(txtEsperaCola.getText().trim());
+            }
+            if(txtEsperaSistema.getText().trim().isEmpty()){
+                
+            }
+            else {
+                esperaSistema = Double.parseDouble(txtEsperaSistema.getText().trim());
+            }
+            
+            double tiempoPromDeLlegadas = 1 / llegadas;
+            double tiempoPromDeServicio = 1 / tiempoSrvc;
+            
+            txtEsperaSistema.setText(String.valueOf(serviceTime(esperaCola, tiempoPromDeServicio)));
+            esperaSistema = Double.parseDouble(txtEsperaSistema.getText().trim());
+            txtUnidadesCola.setText(String.valueOf(clientsInLine(llegadas, esperaCola)));
+            unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
+            txtUnidadesSistema.setText(String.valueOf(clientsInSystem(llegadas, esperaSistema)));
+            unidadesSistema = Double.parseDouble(txtUnidadesSistema.getText().trim());
+            txtProb.setText(String.valueOf(probOcio(llegadas, tiempoSrvc)));
+            probabilidad = Double.parseDouble(txtProb.getText().trim());
+            //double factorDeUtilizacion = 0;
+            
+            
+            
+        } catch (NumberFormatException e) {
+            System.out.println("TIENE NÚMEROS NO VÁLIDOS");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +371,24 @@ public class mm1ModelForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField srvcTime;
+    private javax.swing.JTextField srvcUse;
+    private javax.swing.JTextField txtEsperaCola;
+    private javax.swing.JTextField txtEsperaSistema;
+    private javax.swing.JTextField txtLlegadas;
+    private javax.swing.JTextField txtProb;
+    private javax.swing.JTextField txtUnidadesCola;
+    private javax.swing.JTextField txtUnidadesSistema;
     // End of variables declaration//GEN-END:variables
 }
