@@ -46,6 +46,12 @@ public class mm1ModelForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtEsperaSistema = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtOcio = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtN = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtOcupado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +132,24 @@ public class mm1ModelForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Ocio");
+
+        jLabel10.setText("n");
+
+        txtN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Ocupado");
+
+        txtOcupado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOcupadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,44 +163,59 @@ public class mm1ModelForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEsperaCola, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtProb, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtLlegadas, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtLlegadas, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtN, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                    .addComponent(txtOcio))))
                         .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(81, 81, 81)
+                                .addComponent(txtOcupado))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(srvcTime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtUnidadesCola, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEsperaCola, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtEsperaSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(srvcTime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(srvcUse, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtUnidadesCola, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(srvcUse, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtUnidadesSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton1))))
+                                .addComponent(txtUnidadesSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(131, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(75, 75, 75))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,14 +238,23 @@ public class mm1ModelForm extends javax.swing.JFrame {
                     .addComponent(txtUnidadesCola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtUnidadesSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtEsperaCola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtEsperaSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(384, Short.MAX_VALUE))
+                    .addComponent(txtEsperaSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtOcio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtOcupado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -264,6 +312,9 @@ public class mm1ModelForm extends javax.swing.JFrame {
         double unidadesSistema = 0;
         double esperaCola = 0;
         double esperaSistema = 0;
+        double ocio = 0;
+        double ocupado = 0;
+        int n = 0;
         
         try{
             if(txtLlegadas.getText().trim().isEmpty()){
@@ -314,6 +365,27 @@ public class mm1ModelForm extends javax.swing.JFrame {
             else {
                 esperaSistema = Double.parseDouble(txtEsperaSistema.getText().trim());
             }
+            if(txtOcio.getText().trim().isEmpty()){
+                
+            }
+            else {
+                ocio = Double.parseDouble(txtOcio.getText().trim());
+            }
+            if(txtOcupado.getText().trim().isEmpty()){
+                
+            }
+            else {
+                ocupado = Double.parseDouble(txtOcupado.getText().trim());
+            }
+            if(txtN.getText().trim().isEmpty()){
+                
+            }
+            else {
+                n = Integer.parseInt(txtN.getText().trim());
+            }
+            
+            
+            
             
             double tiempoPromDeLlegadas = 1 / llegadas;
             double tiempoPromDeServicio = 1 / tiempoSrvc;
@@ -324,16 +396,31 @@ public class mm1ModelForm extends javax.swing.JFrame {
             unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
             txtUnidadesSistema.setText(String.valueOf(clientsInSystem(llegadas, esperaSistema)));
             unidadesSistema = Double.parseDouble(txtUnidadesSistema.getText().trim());
-            txtProb.setText(String.valueOf(probOcio(llegadas, tiempoSrvc)));
-            probabilidad = Double.parseDouble(txtProb.getText().trim());
+            txtOcio.setText(String.valueOf(probOcio(llegadas, tiempoSrvc)));
+            ocio = Double.parseDouble(txtOcio.getText().trim());
             //double factorDeUtilizacion = 0;
-            
+            txtOcupado.setText(String.valueOf(probOcupado(llegadas, tiempoSrvc)));
+            ocupado = Double.parseDouble(txtOcupado.getText().trim());
+            txtProb.setText(String.valueOf(probN(llegadas, tiempoSrvc, n)));
+            probabilidad = Double.parseDouble(txtProb.getText().trim());
+            txtUnidadesCola.setText(String.valueOf(clientesCola(llegadas, esperaCola)));
+            unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
+            srvcUse.setText(String.valueOf(tiempoPromDeServicio));
+            tiempoPromDeServicio = Double.parseDouble(srvcUse.getText().trim());
             
             
         } catch (NumberFormatException e) {
             System.out.println("TIENE NÚMEROS NO VÁLIDOS");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNActionPerformed
+
+    private void txtOcupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOcupadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOcupadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,6 +460,8 @@ public class mm1ModelForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -380,6 +469,7 @@ public class mm1ModelForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField srvcTime;
@@ -387,6 +477,9 @@ public class mm1ModelForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtEsperaCola;
     private javax.swing.JTextField txtEsperaSistema;
     private javax.swing.JTextField txtLlegadas;
+    private javax.swing.JTextField txtN;
+    private javax.swing.JTextField txtOcio;
+    private javax.swing.JTextField txtOcupado;
     private javax.swing.JTextField txtProb;
     private javax.swing.JTextField txtUnidadesCola;
     private javax.swing.JTextField txtUnidadesSistema;

@@ -36,4 +36,17 @@ public class MetodosMM {
         return probOcio;
     }
     
+    public static BigDecimal probN (double medLlegada, double medServicio, int n){
+        BigDecimal division = new BigDecimal (medLlegada).divide(new BigDecimal (medServicio));
+        BigDecimal resta = BigDecimal.ONE.subtract(division);
+        BigDecimal elevado = division.pow(n);
+        BigDecimal resultado = resta.multiply(elevado);
+        return resultado;
+    }
+    
+    public static BigDecimal clientesCola(double medLlegada, double tiempoCola) {
+        BigDecimal resultado = new BigDecimal(medLlegada).multiply(new BigDecimal(tiempoCola));
+        return resultado;
+    }
+    
 }
