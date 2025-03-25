@@ -405,7 +405,7 @@ public class mm1ModelForm extends javax.swing.JFrame {
             probabilidad = Double.parseDouble(txtProb.getText().trim());
             txtUnidadesCola.setText(String.valueOf(clientesCola(llegadas, esperaCola)));
             unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
-            srvcUse.setText(String.valueOf(tiempoPromDeServicio));
+            srvcUse.setText(String.valueOf(llegadas/tiempoSrvc));
             tiempoPromDeServicio = Double.parseDouble(srvcUse.getText().trim());
             
             
