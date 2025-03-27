@@ -390,11 +390,11 @@ public class mm1ModelForm extends javax.swing.JFrame {
             double tiempoPromDeLlegadas = 1 / llegadas;
             double tiempoPromDeServicio = 1 / tiempoSrvc;
             
-            txtEsperaSistema.setText(String.valueOf(serviceTime(esperaCola, tiempoPromDeServicio)));
+            txtEsperaSistema.setText(String.valueOf(serviceTime(llegadas, tiempoSrvc)));
             esperaSistema = Double.parseDouble(txtEsperaSistema.getText().trim());
-            txtUnidadesCola.setText(String.valueOf(clientsInLine(llegadas, esperaCola)));
+            txtUnidadesCola.setText(String.valueOf(clientsInLine(llegadas, tiempoSrvc)));
             unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
-            txtUnidadesSistema.setText(String.valueOf(clientsInSystem(llegadas, esperaSistema)));
+            txtUnidadesSistema.setText(String.valueOf(clientsInSystem(llegadas, tiempoSrvc)));
             unidadesSistema = Double.parseDouble(txtUnidadesSistema.getText().trim());
             txtOcio.setText(String.valueOf(probOcio(llegadas, tiempoSrvc)));
             ocio = Double.parseDouble(txtOcio.getText().trim());
@@ -403,7 +403,7 @@ public class mm1ModelForm extends javax.swing.JFrame {
             ocupado = Double.parseDouble(txtOcupado.getText().trim());
             txtProb.setText(String.valueOf(probN(llegadas, tiempoSrvc, n)));
             probabilidad = Double.parseDouble(txtProb.getText().trim());
-            txtUnidadesCola.setText(String.valueOf(clientesCola(llegadas, esperaCola)));
+            txtUnidadesCola.setText(String.valueOf(clientesCola(llegadas, tiempoSrvc)));
             unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
             srvcUse.setText(String.valueOf(llegadas/tiempoSrvc));
             tiempoPromDeServicio = Double.parseDouble(srvcUse.getText().trim());
