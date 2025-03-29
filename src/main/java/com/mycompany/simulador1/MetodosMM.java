@@ -16,21 +16,21 @@ public class MetodosMM {
     
     private static final MathContext MC = new MathContext(50, RoundingMode.HALF_UP);
 
-    public static BigDecimal serviceTime(double tiempoCola, double medServicio) {
-        BigDecimal resta = BigDecimal.valueOf(tiempoCola).subtract(BigDecimal.valueOf(tiempoCola), MC);
+    public static BigDecimal serviceTime(double medLlegada, double medServicio) {
+        BigDecimal resta = BigDecimal.valueOf(medServicio).subtract(BigDecimal.valueOf(medLlegada), MC);
         return BigDecimal.ONE.divide(resta, MC);
     }
 
-    public static BigDecimal clientsInLine(double medLlegada, double tiempoCola) {
+    public static BigDecimal clientsInLine(double medLlegada, double medServicio) {
         BigDecimal elevado = BigDecimal.valueOf(medLlegada).pow(2, MC);
-        BigDecimal resta = BigDecimal.valueOf(tiempoCola).subtract(BigDecimal.valueOf(medLlegada), MC);
-        BigDecimal multiplicacion = BigDecimal.valueOf(tiempoCola).multiply(resta, MC);
+        BigDecimal resta = BigDecimal.valueOf(medServicio).subtract(BigDecimal.valueOf(medLlegada), MC);
+        BigDecimal multiplicacion = BigDecimal.valueOf(medServicio).multiply(resta, MC);
         BigDecimal resultado = elevado.divide(multiplicacion, MC);
         return resultado;
     }
 
-    public static BigDecimal clientsInSystem(double medLlegada, double tiempoServicio) {
-        BigDecimal resta = BigDecimal.valueOf(tiempoServicio).subtract(BigDecimal.valueOf(medLlegada));
+    public static BigDecimal clientsInSystem(double medLlegada, double medServicio) {
+        BigDecimal resta = BigDecimal.valueOf(medServicio).subtract(BigDecimal.valueOf(medLlegada));
         BigDecimal resultado = BigDecimal.valueOf(medLlegada).divide(resta, MC);
         return resultado;
     }
@@ -51,9 +51,9 @@ public class MetodosMM {
         return resta.multiply(elevado, MC);
     }
 
-    public static BigDecimal clientesCola(double medLlegada, double tiempoCola) {
-        BigDecimal resta = BigDecimal.valueOf(tiempoCola).subtract(BigDecimal.valueOf(medLlegada), MC);
-        BigDecimal multiplicacion = BigDecimal.valueOf(tiempoCola).multiply(resta, MC);
+    public static BigDecimal clientesCola(double medLlegada, double medServicio) {
+        BigDecimal resta = BigDecimal.valueOf(medServicio).subtract(BigDecimal.valueOf(medLlegada), MC);
+        BigDecimal multiplicacion = BigDecimal.valueOf(medServicio).multiply(resta, MC);
         BigDecimal resultado = BigDecimal.valueOf(medLlegada).divide(multiplicacion, MC);
         return resultado;
     }

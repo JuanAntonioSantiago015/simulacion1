@@ -4,6 +4,7 @@
  */
 package com.mycompany.simulador1;
 import static com.mycompany.simulador1.MetodosMM.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -384,16 +385,18 @@ public class mm1ModelForm extends javax.swing.JFrame {
                 n = Integer.parseInt(txtN.getText().trim());
             }
             
-            
-            
+            if(llegadas >= tiempoSrvc){
+                JOptionPane.showMessageDialog(null, "El sistema está colapsado");
+                return;
+            }
             
             double tiempoPromDeLlegadas = 1 / llegadas;
             double tiempoPromDeServicio = 1 / tiempoSrvc;
             
             txtEsperaSistema.setText(String.valueOf(serviceTime(llegadas, tiempoSrvc)));
             esperaSistema = Double.parseDouble(txtEsperaSistema.getText().trim());
-            txtUnidadesCola.setText(String.valueOf(clientsInLine(llegadas, tiempoSrvc)));
-            unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
+            txtEsperaCola.setText(String.valueOf(clientesCola(llegadas, tiempoSrvc)));
+            esperaCola = Double.parseDouble(txtEsperaCola.getText().trim());
             txtUnidadesSistema.setText(String.valueOf(clientsInSystem(llegadas, tiempoSrvc)));
             unidadesSistema = Double.parseDouble(txtUnidadesSistema.getText().trim());
             txtOcio.setText(String.valueOf(probOcio(llegadas, tiempoSrvc)));
@@ -403,10 +406,12 @@ public class mm1ModelForm extends javax.swing.JFrame {
             ocupado = Double.parseDouble(txtOcupado.getText().trim());
             txtProb.setText(String.valueOf(probN(llegadas, tiempoSrvc, n)));
             probabilidad = Double.parseDouble(txtProb.getText().trim());
-            txtUnidadesCola.setText(String.valueOf(clientesCola(llegadas, tiempoSrvc)));
+            txtUnidadesCola.setText(String.valueOf(clientsInLine(llegadas, tiempoSrvc)));
             unidadesCola = Double.parseDouble(txtUnidadesCola.getText().trim());
             srvcUse.setText(String.valueOf(llegadas/tiempoSrvc));
             tiempoPromDeServicio = Double.parseDouble(srvcUse.getText().trim());
+            
+            
             
             
         } catch (NumberFormatException e) {
